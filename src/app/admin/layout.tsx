@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { HiOutlinePencil, HiOutlinePhotograph, HiOutlineVideoCamera, HiOutlineCog, HiOutlineHome, HiOutlineLogout, HiOutlineMenu, HiOutlineX } from "react-icons/hi";
+import { HiOutlinePencil, HiOutlinePhotograph, HiOutlineVideoCamera, HiOutlineCog, HiOutlineHome, HiOutlineLogout, HiOutlineMenu, HiOutlineX, HiOutlineShare } from "react-icons/hi";
 
 const adminLinks = [
   { href: "/admin", label: "概览", icon: HiOutlineHome },
@@ -140,6 +140,13 @@ export default function AdminLayout({
               <HiOutlineHome size={20} />
               返回网站
             </Link>
+            <button
+              onClick={() => { navigator.clipboard.writeText(window.location.origin); alert("网站链接已复制！"); }}
+              className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-gray-400 hover:text-white hover:bg-white/5 transition-all w-full"
+            >
+              <HiOutlineShare size={20} />
+              分享网站
+            </button>
             <button
               onClick={handleLogout}
               className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm text-red-400 hover:text-red-300 hover:bg-red-500/5 transition-all w-full"
