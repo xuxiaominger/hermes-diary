@@ -1,61 +1,43 @@
-import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { NextRequest, NextResponse } from "next/server";
+import { supabase } from "@/lib/supabase";
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-    const adminClient = createClient(supabaseUrl, supabaseKey);
+    const { searchParams } = new URL(request.url);
+    const published = searchParams.get("published");
+    const tag = searchParams.get("tag");
+    const page = parseInt(searchParams.get("page") || "1");
+    const limit = parseInt(searchParams.get("limit") || "10");
 
-    const { data, error } = await adminClient
-      .from("posts")
-      .select("id, title, slug, published, created_at, views, tags")
-      .eq("published", true)
-      .order("created_at", { ascending: false })
-      .limit(50);
+    let query = supabase.from("posts").select("*", { count: "exact" }).order("created_at", { ascending: false });
 
+    if (published !== null) {
+      query = query.eq("published", published === "true");
+    }
+    if (tag) {
+      query = query.contains("tags", [tag]);
+    }
+    if (limit > 0) {
+      const from = (page - 1) * limit;
+      query = query.range(from, from + limit - 1);
+    }
+
+    const { data, count, error } = await query;
     if (error) throw error;
 
-    return NextResponse.json({
-      success: true,
-      data: data || [],
-    });
+    return NextResponse.json({ posts: data, total: count || 0 });
   } catch (err) {
-    return NextResponse.json(
-      { success: false, error: (err as Error).message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
   }
 }
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-    const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-    const adminClient = createClient(supabaseUrl, supabaseKey);
-
-    const { data, error } = await adminClient
-      .from("posts")
-      .insert({
-        ...body,
-        created_at: new Date().toISOString(),
-        updated_at: new Date().toISOString(),
-        views: 0,
-        synced_x: false,
-        synced_wechat: false,
-        synced_binance: false,
-      })
-      .select()
-      .single();
-
+    const { data, error } = await supabase.from("posts").insert(body).select("id").single();
     if (error) throw error;
-
-    return NextResponse.json({ success: true, data }, { status: 201 });
+    return NextResponse.json({ id: data.id });
   } catch (err) {
-    return NextResponse.json(
-      { success: false, error: (err as Error).message },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
   }
 }
