@@ -3,6 +3,8 @@ import GlassCard from "@/components/GlassCard";
 import { supabase } from "@/lib/supabase";
 import type { Post } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 async function getPosts() {
   const { data, error } = await supabase
     .from("posts")

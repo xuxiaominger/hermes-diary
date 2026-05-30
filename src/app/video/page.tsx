@@ -2,6 +2,8 @@ import Link from "next/link";
 import GlassCard from "@/components/GlassCard";
 import { supabase } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 async function getVideos() {
   const { data } = await supabase
     .from("videos")
