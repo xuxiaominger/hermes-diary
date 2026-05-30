@@ -20,13 +20,7 @@ export default function HomePage() {
         </p>
         <div className="flex gap-4 justify-center">
           <Link href="/blog" className="glass-btn inline-block">
-            阅读博客
-          </Link>
-          <Link
-            href="/admin"
-            className="glass-btn-secondary inline-block"
-          >
-            管理后台
+            开始阅读
           </Link>
         </div>
       </div>
