@@ -99,7 +99,7 @@ export default function AdminLayout({
             <Link href="/admin" className="flex items-center gap-2">
               <span className="text-xl">✦</span>
               <span className="font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
-                Hermes Diary
+                hermes diary
               </span>
             </Link>
           </div>

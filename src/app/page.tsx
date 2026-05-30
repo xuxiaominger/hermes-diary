@@ -8,7 +8,7 @@ export default function HomePage() {
       <div className="text-center max-w-3xl mx-auto mb-16 animate-fade-in-up">
         <h1 className="text-5xl md:text-7xl font-bold mb-6">
           <span className="bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 bg-clip-text text-transparent">
-            Hermes Diary
+            许笑铭的博客
           </span>
         </h1>
         <p className="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
@@ -60,7 +60,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="mt-20 text-center text-gray-600 text-sm">
-        <p>© 2026 Hermes Diary. All rights reserved.</p>
+        <p>© 2026 许笑铭的博客. All rights reserved.</p>
       </footer>
     </div>
   );

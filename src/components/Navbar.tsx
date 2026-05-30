@@ -38,7 +38,7 @@ export default function Navbar() {
             className="flex items-center gap-2 text-xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"
           >
             <span className="text-2xl">✦</span>
-            Hermes Diary
+            hermes diary
           </Link>
 
           {/* Desktop Nav */}

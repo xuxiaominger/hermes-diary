@@ -6,24 +6,24 @@ import EarthScene from "@/components/Earth";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://guides-treasury-rental-buddy.trycloudflare.com";
 
 export const metadata: Metadata = {
-  title: "Hermes Diary — 个人博客",
+  title: "许笑铭的博客",
   description: "记录商业与法律之路上的思考与见闻",
-  keywords: ["博客", "商业", "法律", "个人网站"],
+  keywords: ["博客", "商业", "法律", "许笑铭"],
   openGraph: {
-    title: "Hermes Diary — 个人博客",
+    title: "许笑铭的博客",
     description: "记录商业与法律之路上的思考、见闻与感悟",
     url: SITE_URL,
-    siteName: "Hermes Diary",
+    siteName: "许笑铭的博客",
     locale: "zh_CN",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hermes Diary — 个人博客",
+    title: "许笑铭的博客",
     description: "记录商业与法律之路上的思考、见闻与感悟",
   },
   other: {
-    "weixin-title": "Hermes Diary — 个人博客",
+    "weixin-title": "许笑铭的博客",
     "weixin-desc": "记录商业与法律之路上的思考、见闻与感悟",
   },
 };
@@ -37,7 +37,7 @@ export default function RootLayout({
     <html lang="zh-CN">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-        <meta property="og:title" content="Hermes Diary — 个人博客" />
+        <meta property="og:title" content="许笑铭的博客" />
         <meta property="og:description" content="记录商业与法律之路上的思考、见闻与感悟" />
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:type" content="website" />
